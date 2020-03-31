@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Student{% endblock %}
+
+{% block body %}
+    <body class="body-show">
+    <div class="container-fluid">
+        <h1 class="titleStudentShow"><strong>Mes informations</strong></h1>
+        <table class="studentShowTable table">
+            <tbody>
+
+            <tr>
+                <th>Prénom</th>
+                <td>{{ student.firstname }}</td>
+            </tr>
+
+            <tr>
+                <th>Nom</th>
+                <td>{{ student.lastname }}</td>
+            </tr>
+
+            <tr>
+                <th>Date de Naissance</th>
+                <td>{{ student.birthday ? student.birthday|date('d-m-Y') }}</td>
+            </tr>
+
+            <tr>
+                <th>Adresse</th>
+                <td>{{ student.postalAdress }}</td>
+            </tr>
+
+            <tr>
+                <th>Code Postal</th>
+                <td>{{ student.postalCode }}</td>
+            </tr>
+
+            <tr>
+                <th>Ville</th>
+                <td>{{ student.town }}</td>
+            </tr>
+
+            <tr>
+                <th>Numéro de Téléphone</th>
+                <td>{{ student.phoneNumber }}</td>
+            </tr>
+
+            <tr>
+                <th>Financement</th>
+                <td>{{ student.funding }}</td>
+            </tr>
+
+            <tr>
+                <th>Companie d'assurance</th>
+                <td>{{ student.insuranceCompany }}</td>
+            </tr>
+
+            <tr>
+                <th>Numéro de sociétaire</th>
+                <td>{{ student.insuranceNumber }}</td>
+            </tr>
+
+            <tr>
+                <th>Identifiant Pole Emploi</th>
+                <td>{{ student.poleEmploiId }}</td>
+            </tr>
+
+            <tr>
+                <th>Numéro de sécurité sociale</th>
+                <td>{{ student.socialSecurityNumber }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <div>
+            <div class="form-group">
+                <a href="{{ path('student_edit', {'id': student.id}) }}">
+                    <button type="button" class="btnStudentShow">Modifier</button>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('student_index') }}">
+                            <button type="button" class="btnStudentShow2">Revenir au tableau de bord</button>
+                        </a>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

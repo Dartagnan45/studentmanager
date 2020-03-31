@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="{{ path('app_login') }}"><img class="navbar-item ml-auto"
+                                           src="{{ asset('build/logo_pink.png') }}"
+                                           alt="logo-wild"></a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            {% if app.user == false %}
+                <li class="nav-item ml-auto">
+                    <a class="navbutton nav-link" href="{{ path ('user_registration') }}">Créer son compte</a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_USER')and app.user.student %}
+                <li class="nav-item ml-auto">
+                    <a class="navbutton nav-link" href="{{ path('student_show', {id: app.user.student.id}) }}">Profil</a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_USER') and not app.user.student %}
+                <li class="nav-item ml-auto">
+                    <a class="navbutton nav-link" href="{{ path('student_new') }}">Crée ton profil</a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item ml-auto">
+                    <a class="navbutton nav-link" href="{{ path ('student_index') }}">Tableau de bord</a>
+                </li>
+            {% endif %}
+            {% if app.user %}
+                <li class="nav-item">
+                    <a class="navbutton nav-link" href="{{ path ('security_logout') }}">Déconnexion</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

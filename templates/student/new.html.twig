@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Student{% endblock %}
+
+{% block body %}
+    <body class="body-new">
+        <div class="b-container">
+            <div class="container-opacity container">
+                <div class="edit-form container">
+                    <h1 class="h1-edit"><strong>Crée ton profil</strong></h1>
+                    {{ include('student/_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </body>
+{% endblock %}
